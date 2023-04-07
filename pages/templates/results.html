@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mt-5 mb-4">Results</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title mb-4">Customer Data</h3>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="fw-bold">Age:  {{ age }}</p>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="fw-bold">Active Member:  {{ active_member }}</p>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="fw-bold">Gender: {{ gender }}</p>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="fw-bold">Bank Balance:  ${{ bank_balance }}</p>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="fw-bold">Number of Products:  {{ num_products }}</p>
+              </div>
+            </div>
+            <hr>
+            <h3 class="card-title mt-4">Prediction</h3>
+            {% if singlePrediction == 0 %}
+              <p class="text-danger mt-3">Customer has a higher chance of leaving the bank</p>
+            {% else %}
+              <p class="text-success mt-3">Customer will not exit the bank</p>
+            {% endif %}
+            <a href="{% url 'home' %}" class="btn btn-primary mt-3">Go back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mt-5 mb-1">Customer data</h1>
+  <p class="mb-3">Predict whether a bank's customer leave the bank or not</p>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form action="{% url 'homePost' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class= "font-weight-bold" for="age">Age</label>
+          <input type="number" name="age" id="age" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class= "font-weight-bold">Active Member</label>
+          <br>
+          <div class="form-check form-check-inline">
+            <input type="radio" name="active_member" id="active_member-yes" value="yes" class="form-check-input" required>
+            <label for="active_member-yes" class="form-check-label">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="radio" name="active_member" id="active_member-no" value="no" class="form-check-input">
+            <label for="active_member-no" class="form-check-label">No</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class= "font-weight-bold">Gender</label>
+          <br>
+          <div class="form-check form-check-inline">
+            <input type="radio" name="gender" id="gender-male" value="male" class="form-check-input" required>
+            <label for="gender-male" class="form-check-label">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input type="radio" name="gender" id="gender-female" value="female" class="form-check-input">
+            <label for="gender-female" class="form-check-label">Female</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class= "font-weight-bold" for="bank_balance">Bank Balance</label>
+          <input type="number" name="bank_balance" id="bank_balance" class="form-control" step="100" min="0" required>
+        </div>
+        <div class="form-group">
+          <label class= "font-weight-bold" for="num_products">Number of Products</label>
+          <input type="number" name="num_products" id="num_products" class="form-control" min="0" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Get Result</button>
+      </form>
+      {% if errorMessage %}
+      <div class="alert alert-danger mt-3" role="alert">
+        {{ errorMessage }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
